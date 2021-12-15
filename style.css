@@ -1,3 +1,22 @@
 #vue-app {
-  font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.product-list {
+	width: 100vw;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 0.5em;
+}
+.product-list img {
+	max-width: 100px;
+	max-height: 50%;
+}
+
+.product-list article {
+	border: 1px solid blue;
+	padding: 0.5em;
+
+	display: grid;
+	grid-template-rows: auto auto auto;
 }

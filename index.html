@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>La tiendita verde</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="app.js" defer></script>
-  </head>
-  <body>
-    <main id="vue-app">
-      <h2>La tiendita verde</h2>
+	<head>
+		<title>La tiendita verde</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="app.js" defer></script>
+	</head>
+	<body>
+		<main id="vue-app">
+			<h2>La tiendita verde</h2>
+			<nav>
+				<button
+					v-for="category in categories"
+					@click="filterButtonClicked(category)"
+				>
+					{{category}}
+				</button>
+				{{selectedCategory}}
+			</nav>
 
-      <details>
-        <summary>data</summary>
-        <pre>products = {{this.products}}</pre>
-        <pre>categories = {{this.categories}}</pre>
-      </details>
-    </main>
-  </body>
+			<section class="product-list">
+				<article
+					v-for="product in products"
+					v-show="selectedCategory === product.category"
+				>
+					{{product.title}}
+					<img :src="product.image" />
+					{{product.price}}
+				</article>
+			</section>
+
+			<details>
+				<summary>data</summary>
+				<pre>products = {{products}}</pre>
+				<pre>categories = {{categories}}</pre>
+			</details>
+		</main>
+	</body>
 </html>
