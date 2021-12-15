@@ -9,6 +9,19 @@
   <body>
     <main id="vue-app">
       <h2>La tiendita verde</h2>
+      
+      <section class="categories">
+        <button v-for="category in categories" @click="selectCategory(category)">{{category}}</button>
+        {{selectedCategory}}
+      </section>
+
+      <section class="products">
+        <article v-for="product in selectedProducts">
+          <p>{{product.title}}</p>
+          <img :src="product.image" />
+          <p>{{product.price}}</p>
+        </article>
+      </sections>
 
       <details>
         <summary>data</summary>

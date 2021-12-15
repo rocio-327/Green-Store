@@ -3,6 +3,8 @@ const app = Vue.createApp({
     return {
       products: [],
       categories: [],
+      selectedCategory: '',
+      selectedProducts: [],
     }
   },
   mounted() {
@@ -17,6 +19,21 @@ const app = Vue.createApp({
     async loadCategories() {
       let response = await fetch('https://fakestoreapi.com/products/categories')
       this.categories = await response.json()
+    },
+    selectCategory(category) {
+      console.log(category)
+      this.selectedCategory = category
+      this.updateSelectedProducts()
+    },
+    updateSelectedProducts() {
+      let result = []
+      for (product of this.products) {
+        if (product.category === this.selectedCategory) {
+          result.push(product)
+        }
+      }
+      this.selectedProducts = result
+      console.log(this.selectedProducts)
     },
   },
 })
