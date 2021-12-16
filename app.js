@@ -3,9 +3,25 @@ const app = Vue.createApp({
 		return {
 			products: [],
 			categories: [],
-			selectedCategory: "lanadelrey",
+			selectedCategory: "",
 		};
 	},
+	computed: {
+		filteredProducts() {
+			if (this.selectedCategory === "") {
+				return this.products;
+			}
+
+			let result = [];
+			for (product of this.products) {
+				if (this.isProductInView(product)) {
+					result.push(product);
+				}
+			}
+			return result;
+		},
+	},
+
 	mounted() {
 		this.loadProducts();
 		this.loadCategories();
@@ -23,6 +39,13 @@ const app = Vue.createApp({
 		},
 		filterButtonClicked(category) {
 			this.selectedCategory = category;
+		},
+		isProductInView(product) {
+			if (product.category === this.selectedCategory) {
+				return true;
+			} else {
+				return false;
+			}
 		},
 	},
 });

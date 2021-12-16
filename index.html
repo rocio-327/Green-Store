@@ -20,16 +20,12 @@
 			</nav>
 
 			<section class="product-list">
-				<article
-					v-for="product in products"
-					v-show="selectedCategory === product.category"
-				>
+				<article v-for="product in filteredProducts">
 					{{product.title}}
 					<img :src="product.image" />
 					{{product.price}}
 				</article>
 			</section>
-
 			<details>
 				<summary>data</summary>
 				<pre>products = {{products}}</pre>
